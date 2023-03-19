@@ -1,0 +1,156 @@
+<link rel="stylesheet" type="text/css" href="/css/home.css">
+<section class="notice">
+    <div class="page-title">
+        <div class="container">
+            <h3>게시판</h3>
+        </div>
+    </div>
+
+    <!-- board search area -->
+    <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <label for="search" class="blind">게시글 검색</label>
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="" autofocus>
+                        <button type="submit" class="btn btn-dark">검색</button>
+                    </div>
+                    <div class="create-wrap">
+                        <center>
+                            <button type="button" onclick="location.href='article/post';">게시글 작성하기</button>
+                        </center>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">글 아이디</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">등록일</th>
+                    <th scope="col" class="th-num">조회수</th>
+                    <th scope="col" class="th-num">좋아요</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articleList}">
+                    <td>
+                        <form method="get" action="/articleView">
+                            <p><input type="submit" th:value="${article.id}" name="id" style="font-size:15px"></p>
+                        </form>
+                    </td>
+                    <td th:text="${article.title}"></td>
+                    <td th:text="${article.createdAt}"></td>
+                    <td th:text="${article.views}"></td>
+                    <td th:text="${article.likes}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</section>
+
+<style>
+    .page {
+        text-align: center;
+        width: 100%;
+    }
+
+    .pagination {
+        list-style: none;
+        display: inline-block;
+        padding: 0;
+        margin-top: 20px;
+    }
+
+    .pagination li {
+        display: inline;
+        text-align: center;
+    }
+
+    .pagination a {
+        float: left;
+        display: block;
+        font-size: 14px;
+        text-decoration: none;
+        padding: 5px 12px;
+        color: #96a0ad;
+        line-height: 1.5;
+    }
+
+    .first {
+        margin-right: 15px;
+    }
+
+
+    .last {
+        margin-left: 15px;
+    }
+
+
+    .first:hover, .last:hover, .left:hover, .right:hover {
+        color: #2e9cdf;
+    }
+
+    .pagination a.active {
+        cursor: default;
+        color: #ffffff;
+    }
+
+    .pagination a:active {
+        outline: none;
+    }
+
+    .modal .num {
+        margin-left: 3px;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+    }
+
+    .modal .num:hover {
+        background-color: #2e9cdf;
+    }
+
+    .modal .num.active .modal .num:active {
+        background-color: #2e9cdf;
+        cursor: pointer;
+    }
+
+
+    .arrow-left {
+        width:0;
+        height:0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid blue;
+    }
+
+
+</style>
+<div class="page">
+    <ul class="pagination modal">
+        <li> <a href="/" class="first">처음 페이지</a></li>
+        <li> <a href="/" class="arrow left"><<</a></li>
+        <li> <a href="board?page=1" class="active num">1</a></li>
+        <li> <a href="board?page=2" class="num">2</a></li>
+        <li> <a href="board?page=3" class="num">3</a></li>
+        <li> <a href="board?page=4" class="num">4</a></li>
+        <li> <a href="board?page=5" class="num">5</a></li>
+        <li> <a href="#" class="arrow right">>></a></li>
+        <li> <a href="/" class="last">끝 페이지</a></li>
+    </ul>
+</div>
+

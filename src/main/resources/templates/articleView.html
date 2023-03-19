@@ -1,0 +1,134 @@
+<link rel="stylesheet" type="text/css" href="/css/home.css">
+<section class="notice">
+    <div class="page-title">
+        <div class="container">
+            <h3><span th:text="${article.title}"></span></h3>
+        </div>
+    </div>
+
+
+    <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">글 아이디</th>
+                    <th scope="col" class="th-date">등록일</th>
+                    <th scope="col" class="th-num">조회수</th>
+                    <th scope="col" class="th-num">좋아요</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${article.id}"></td>
+                    <td th:text="${article.createdAt}"></td>
+                    <td th:text="${article.views}"></td>
+                    <td th:text="${article.likes}"></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+
+    <div>
+        <form method="POST" action="/article/like">
+            <div style= "float: right;  margin-right: 350px;">
+                <button name="id" id="id" th:value="${article.id}" type="submit"><img src="css/like.png" style="width:20px; height:20px;"></button>
+            </div>
+        </form>
+    </div>
+
+    <!--    <form method="POST" action="/article/like">-->
+    <!--        <input type="submit"  name="id" th:value="${article.id}">-->
+    <!--        <div style= "float: right;  margin-right: 400px;">-->
+    <!--            <img src="css/like.png" style="width:20px; height:20px;"/>-->
+    <!--        </div>-->
+    <!--    </form>-->
+
+
+    <div class="content">
+        <div class="container">
+            <h3>내용</h3>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="content">
+        <div class="container">
+            <h5><span th:text="${article.content}"></span></h5>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div id="board-list2">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-title">댓글 내용</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="comment : ${article.comment}">
+                        <td th:text="${comment.content}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="w-btn w-btn-green2">
+        <form method="GET" action="/commentView">
+            <button type="submit" th:value="${article.id}" name="id">댓글달기</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="w-btn w-btn-green2">
+        <form th:method="GET" action="/article/patch">
+            <button type="submit" th:value="${article.id}" name="id">수정하기</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="w-btn w-btn-green2">
+        <form th:method="DELETE" action="/article">
+            <button type="submit" th:value="${article.id}" name="id">삭제하기</button>
+        </form>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="w-btn w-btn-green2">
+        <button onclick="window.location.href='http://localhost:8080'" >HOME</button>
+    </div>
+
+
+</section>
+

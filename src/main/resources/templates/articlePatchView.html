@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시판</title>
+
+</head>
+<body>
+<?$board_id=$_GET['board_id'];?>
+<div id="board_write">
+  <h1>글을 수정하는 공간입니다.</h1>
+  <div id="write_area">
+    <form enctype="multipart/form-data" action="/article" th:method="PATCH">
+      <div id="in_title">제목
+        <textarea type="text" name="title" id="title" rows="5" cols="100" th:text="${article.title}" maxlength="100" required></textarea>
+      </div>
+
+      <div class="wi_line"></div>
+      <div id="in_content">내용
+        <textarea type="text" name="content" rows="30" cols="100" id="content" th:text="${article.content}" required></textarea>
+      </div>
+      <div>
+        <input th:value="${article.id}" name="id" id="id" style="display:none">
+      </div>
+      <div class="bt_se">
+        <button type="submit">글 수정</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+`

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시판</title>
+
+</head>
+<body>
+<?$board_id=$_GET['board_id'];?>
+<div id="board_write">
+  <h1>글을 작성하는 공간입니다.</h1>
+  <div id="write_area">
+    <form enctype="multipart/form-data" action="/article" method="POST">
+      <div id="in_title">
+        <textarea name="title" id="title" rows="5" cols="100" placeholder="제목" maxlength="100" required></textarea>
+      </div>
+
+      <div class="wi_line"></div>
+      <div id="in_content">
+        <textarea name="content" id="content" rows="30" cols="100" placeholder="내용" required></textarea>
+      </div>
+      <div class="bt_se">
+        <button type="submit">글 작성</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
