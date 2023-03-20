@@ -10,4 +10,6 @@ public class ArticleForm {
   private Long id;
   private String title;
   private String content;
+  private int views;
+  private int likes;
 }
